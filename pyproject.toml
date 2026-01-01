@@ -1,0 +1,17 @@
+[project]
+name = "mcp-lab"
+version = "0.1.0"
+description = "A MCP server project"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [ "mcp>=1.25.0",]
+[[project.authors]]
+name = "Damian34"
+email = "dam****@gmail.com"
+
+[build-system]
+requires = [ "uv_build>=0.9.18,<0.10.0",]
+build-backend = "uv_build"
+
+[project.scripts]
+mcp-lab = "mcp_lab:main"
