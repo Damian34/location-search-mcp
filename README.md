@@ -2,110 +2,55 @@
 
 A MCP server project
 
-## Components
+## Description
 
-### Resources
+The API is an MCP server that provides structured search over Polish administrative locations and addresses using official data from the Polish GOV systems (TERYT, SIMC, ULIC).
 
-The server implements a simple note storage system with:
-- Custom note:// URI scheme for accessing individual notes
-- Each note resource has a name, description and text/plain mimetype
+The server exposes tools that allow searching for provinces, districts, municipalities, localities, and streets with detailed hierarchical context.
 
-### Prompts
+A typical use case is connecting the MCP server to an LLM, enabling the model to analyze documents or articles and infer which geographical areas in Poland the content refers to.
 
-The server provides a single prompt:
-- summarize-notes: Creates summaries of all stored notes
-  - Optional "style" argument to control detail level (brief/detailed)
-  - Generates prompt combining all current notes with style preference
+## Install & Running on Ubuntu
 
-### Tools
+1. Run fully Locally
 
-The server implements one tool:
-- add-note: Adds a new note to the server
-  - Takes "name" and "content" as required string arguments
-  - Updates server state and notifies clients of resource changes
+run server(get inside project): `uv run src/mcp_lab/server.py` \
+open client UI: `npx @modelcontextprotocol/inspector uv run my-mcp`
 
-## Configuration
+2. Run with dockerfile and verify at UI
 
-[TODO: Add configuration details specific to your implementation]
+build image: `docker build -t mcp-lab .` \
+create/run container: `docker run --rm --network host mcp-lab` \
+OR create/run container(along with separate volume): `docker run --rm --network host -v mcp_lab_data:/app/data mcp-lab` \
+open client UI(separate CMD): `npx @modelcontextprotocol/inspector`
 
-## Quickstart
+set UI:
+Transport type: `SEE`
+URL: `http://localhost:8080/sse`
 
-### Install
+3. publish with cloudflared
 
-#### Claude Desktop
+build image: `docker build -t mcp-lab .` \
+create/run container: `docker run --rm --network host mcp-lab` \
+publish: `cloudflared tunnel --url http://localhost:8080`
 
-On MacOS: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
-On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
+## Testing with Postman
 
-<details>
-  <summary>Development/Unpublished Servers Configuration</summary>
-  ```
-  "mcpServers": {
-    "mcp-lab": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "/home/user/Projects-py/mcp-lab",
-        "run",
-        "mcp-lab"
-      ]
-    }
-  }
-  ```
-</details>
+to simply test crete `new workspace` -> `MCP` -> `tools` -> set url: `http://localhost:8080/sse`
 
-<details>
-  <summary>Published Servers Configuration</summary>
-  ```
-  "mcpServers": {
-    "mcp-lab": {
-      "command": "uvx",
-      "args": [
-        "mcp-lab"
-      ]
-    }
-  }
-  ```
-</details>
+to test with LLM: `new workspace` -> `AI` -> select model -> set API key & set url: `http://localhost:8080/sse`
 
-## Development
+prompts e.g.:
+- `Please tell me where every town with name Kolno is located.`
+- `Find every location in Poland, which starts with "Nowa".`
+- 
 
-### Building and Publishing
+## Update database models/migrations with Alembic
 
-To prepare the package for distribution:
+- Create basic alembic files: \
+  `alembic init alembic`
+- Generates a new migration file based on current SQLAlchemy models: \
+  `alembic revision --autogenerate -m "initial schema"`
+- Applies all pending migrations to the database: \
+  `alembic upgrade head`  
 
-1. Sync dependencies and update lockfile:
-```bash
-uv sync
-```
-
-2. Build package distributions:
-```bash
-uv build
-```
-
-This will create source and wheel distributions in the `dist/` directory.
-
-3. Publish to PyPI:
-```bash
-uv publish
-```
-
-Note: You'll need to set PyPI credentials via environment variables or command flags:
-- Token: `--token` or `UV_PUBLISH_TOKEN`
-- Or username/password: `--username`/`UV_PUBLISH_USERNAME` and `--password`/`UV_PUBLISH_PASSWORD`
-
-### Debugging
-
-Since MCP servers run over stdio, debugging can be challenging. For the best debugging
-experience, we strongly recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector).
-
-
-You can launch the MCP Inspector via [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with this command:
-
-```bash
-npx @modelcontextprotocol/inspector uv --directory /home/user/Projects-py/mcp-lab run mcp-lab
-```
-
-
-Upon launching, the Inspector will display a URL that you can access in your browser to begin debugging.

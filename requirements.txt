@@ -1,0 +1,6 @@
+mcp
+sqlalchemy
+alembic
+aiosqlite
+requests
+bs4
