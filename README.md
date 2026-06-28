@@ -1,8 +1,4 @@
-# mcp-lab MCP server
-
-A MCP server project
-
-## Description
+# Location Search MCP
 
 The API is an MCP server that provides structured search over Polish administrative locations and addresses using official data from the Polish GOV systems (TERYT, SIMC, ULIC).
 
@@ -43,7 +39,6 @@ to test with LLM: `new workspace` -> `AI` -> select model -> set API key & set u
 prompts e.g.:
 - `Please tell me where every town with name Kolno is located.`
 - `Find every location in Poland, which starts with "Nowa".`
-- 
 
 ## Update database models/migrations with Alembic
 
