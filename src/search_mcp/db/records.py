@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import TypeVar, Generic, List
 
-import mcp_lab.db.migration.models as models
+import search_mcp.db.migration.models as models
 
 
 @dataclass

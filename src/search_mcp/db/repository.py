@@ -4,8 +4,8 @@ from typing import Iterable, Type, TypeVar, Iterator
 from sqlalchemy import insert, select, func, GenerativeSelect
 from sqlalchemy.ext.asyncio import AsyncSession
 
-import mcp_lab.db.records as re
-from mcp_lab.db.migration.models import Base
+import search_mcp.db.records as re
+from search_mcp.db.migration.models import Base
 
 from dataclasses import fields
 

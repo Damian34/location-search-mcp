@@ -10,10 +10,10 @@ from mcp.server.fastmcp import FastMCP, Context
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
-import mcp_lab.db.records as re
-from mcp_lab.db.migration.db_files import DatabaseFiles
-from mcp_lab.logger_cfg import logg
-from mcp_lab.my_service import LocationService
+import search_mcp.db.records as re
+from search_mcp.db.migration.db_files import DatabaseFiles
+from search_mcp.logger_cfg import logg
+from search_mcp.my_service import LocationService
 
 __import_db_done = False
 

@@ -1,7 +1,7 @@
 from typing import Iterable
 
-from mcp_lab.source_loader import SourceLoader
-from mcp_lab.db.records import Province, District, Municipality, Locality, Street
+from search_mcp.source_loader import SourceLoader
+from search_mcp.db.records import Province, District, Municipality, Locality, Street
 
 
 class SourceReader:

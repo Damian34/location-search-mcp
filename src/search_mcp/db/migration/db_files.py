@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from mcp_lab.file_manager import FileManager
+from search_mcp.file_manager import FileManager
 
 class DatabaseFiles:
     __file_manager = FileManager()

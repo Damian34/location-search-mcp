@@ -4,8 +4,8 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-from src.mcp_lab.db.migration.db_files import DatabaseFiles
-from src.mcp_lab.db.migration.models import Base
+from src.search_mcp.db.migration.db_files import DatabaseFiles
+from src.search_mcp.db.migration.models import Base
 
 # config Alembica
 config = context.config

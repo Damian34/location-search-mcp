@@ -4,12 +4,12 @@ from typing import TypeVar
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-import mcp_lab.db.records as re
+import search_mcp.db.records as re
 
-from mcp_lab.db.repository import LocationRepository
-from mcp_lab.logger_cfg import logg
-from mcp_lab.source_loader import SourceLoader
-from mcp_lab.source_reader import SourceReader
+from search_mcp.db.repository import LocationRepository
+from search_mcp.logger_cfg import logg
+from search_mcp.source_loader import SourceLoader
+from search_mcp.source_reader import SourceReader
 
 T = TypeVar("T", bound=re.DataTable)
 

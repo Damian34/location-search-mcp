@@ -5,7 +5,7 @@ from zipfile import ZipFile
 import requests
 from bs4 import BeautifulSoup
 
-from mcp_lab.file_manager import FileManager
+from search_mcp.file_manager import FileManager
 
 
 class SourceLoader:

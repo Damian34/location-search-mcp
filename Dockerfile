@@ -17,5 +17,5 @@ VOLUME /app/data
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "alembic upgrade head && exec python src/mcp_lab/server.py"]
-#CMD ["python", "src/mcp_lab/server.py"]
+CMD ["sh", "-c", "alembic upgrade head && exec python src/search_mcp/server.py"]
+#CMD ["python", "src/search_mcp/server.py"]
